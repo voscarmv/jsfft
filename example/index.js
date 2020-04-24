@@ -35,6 +35,30 @@ window.onload = function() {
       freq.imag = 0;
     }
   });
+
+  // var real = new Float32Array(5);
+  // var imag = new Float32Array(5);
+  // var ac = new AudioContext();
+  // var osc = ac.createOscillator();
+
+  // real[0] = 0;
+  // imag[0] = 0;
+  // real[1] = 1;
+  // imag[1] = 0.5;
+  // real[2] = 0;
+  // imag[2] = 0.33;
+  // real[3] = 1;
+  // imag[3] = 0;
+  // real[4] = 0;
+  // imag[4] = 0;
+
+  // data.map((freq, i, n) => {
+  //   if (i > n/5 && i < 4*n/5) {
+  //     freq.real = real[i];
+  //     freq.imag = imag[i];
+  //   }
+  // });
+
   drawToCanvas('fft_filtered', data);
   drawToCanvas('original_filtered', data.InvFFT());
 

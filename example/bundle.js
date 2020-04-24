@@ -97,7 +97,11 @@ function drawToCanvas(element_id, data) {
 
 window.onload = function() {
   const data = new __WEBPACK_IMPORTED_MODULE_0__lib_fft__["a" /* ComplexArray */](128).map((value, i, n) => {
-    value.real = (i > n/3 && i < 2*n/3) ? 1 : 0;
+    if(i < n/2){
+      value.real = i/(n/2);
+    }else{
+      value.real = (i > n/3 && i < 2*n/3) ? 1 : 0;
+    }
   });
 
   drawToCanvas('original', data);
@@ -110,6 +114,41 @@ window.onload = function() {
       freq.imag = 0;
     }
   });
+
+  
+  // var real = new Float32Array(5);
+  // var imag = new Float32Array(5);
+  // var ac = new AudioContext();
+  // var osc = ac.createOscillator();
+
+  // real[0] = 0;
+  // imag[0] = 0;
+  // real[1] = 1;
+  // imag[1] = 0.5;
+  // real[2] = 0;
+  // imag[2] = 0.33;
+  // real[3] = 1;
+  // imag[3] = 0;
+  // real[4] = 1;
+  // imag[4] = 1;
+
+  // data.map((freq, i, n) => {
+  //   if (i < real.length) {
+  //     freq.real = real[i];
+  //     freq.imag = imag[i];
+  //   }
+  // });
+
+
+  var outputString = "";
+
+  data.forEach((value,i)=>{
+    outputString += "real["+i+"] = "+value.real+";\nimag["+i+"] = "+value.imag+";\n";
+  }
+  );
+
+  document.getElementById("imagarray").innerHTML = outputString;
+
   drawToCanvas('fft_filtered', data);
   drawToCanvas('original_filtered', data.InvFFT());
 
